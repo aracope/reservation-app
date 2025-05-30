@@ -1,8 +1,11 @@
-/** Database for lunchly */
+/** Database for lunchly. */
 
-const pg = require("pg");
+const { Client } = require("pg");
 
-const db = new pg.Client("postgresql:///lunchly");
+// Use the DATABASE_URL from the environment, or fall back to local lunchly
+const db = new Client({
+  connectionString: process.env.DATABASE_URL || "postgresql:///lunchly"
+});
 
 db.connect();
 
